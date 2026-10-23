@@ -15,7 +15,7 @@ function ReturnApprovalsTable() {
   return (
     <Card className="gap-0 rounded-2xl py-0 shadow-none">
       <CardHeader className="border-b px-4 py-4">
-        <div role="tablist" aria-label="Return approval views" className="flex w-fit rounded-xl bg-muted p-1">
+        <div role="tablist" aria-label="Return approval views" className="flex w-fit max-w-full overflow-x-auto rounded-xl bg-muted p-1">
           <Button
             type="button"
             role="tab"

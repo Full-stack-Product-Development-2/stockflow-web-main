@@ -80,7 +80,7 @@ function DistributionRunDetails({ run }) {
         <p className="mb-1 text-xs font-semibold tracking-wide text-muted-foreground">
           PRODUCT RECONCILIATION
         </p>
-        <Table className="table-fixed text-xs [&_td]:whitespace-normal [&_th]:whitespace-normal">
+        <Table className="min-w-160 table-fixed text-xs [&_td]:whitespace-normal [&_th]:whitespace-normal">
           <TableHeader>
             <TableRow className="hover:bg-transparent">
               <TableHead className="w-[28%] px-0">Product</TableHead>
@@ -122,7 +122,7 @@ function DistributionRunDetails({ run }) {
           <p className="mb-1 text-xs font-semibold tracking-wide text-muted-foreground">
             OUTLET DELIVERY HISTORY
           </p>
-          <Table className="table-fixed text-xs [&_td]:whitespace-normal [&_th]:whitespace-normal">
+          <Table className="min-w-160 table-fixed text-xs [&_td]:whitespace-normal [&_th]:whitespace-normal">
             <TableHeader>
               <TableRow className="hover:bg-transparent">
                 <TableHead className="w-[18%] px-0">Outlet</TableHead>

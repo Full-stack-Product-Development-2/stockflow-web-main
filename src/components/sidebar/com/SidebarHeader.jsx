@@ -2,7 +2,7 @@ import { BarChart3 } from "lucide-react";
 
 function SidebarHeader({header}) {
   return (
-    <div className="flex h-16 items-center gap-3 border-b border-border px-5">
+    <div className="hidden h-16 items-center gap-3 border-b border-border px-5 md:flex">
       <div className="flex size-8 items-center justify-center rounded-lg bg-[#e85d31] text-white shadow-sm">
         <BarChart3 aria-hidden="true" className="size-4" strokeWidth={2.25} />
       </div>

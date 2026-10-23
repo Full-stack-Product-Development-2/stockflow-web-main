@@ -13,10 +13,10 @@ function FDOLayout({ children }) {
     <div className="flex flex-row min-h-screen">
       <Sidebar nav={sidebarNavFDO} header={sidebarHeaderFDO} />
 
-      <div className="flex-1 bg-gray-100">
+      <div className="min-w-0 flex-1 bg-gray-100">
         <Topnav />
 
-        <div className="p-6">{children}</div>
+        <div className="p-4 pb-24 md:p-6">{children}</div>
       </div>
     </div>
   );

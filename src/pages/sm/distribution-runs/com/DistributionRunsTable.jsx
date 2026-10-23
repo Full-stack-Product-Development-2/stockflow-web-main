@@ -81,7 +81,7 @@ function DistributionRunsTable() {
       <DistributionRunFilters filters={filters} onFilterChange={changeFilter} />
 
       <CardContent className="px-0 pb-0">
-        <Table className="table-fixed text-xs [&_td]:whitespace-normal [&_th]:whitespace-normal">
+        <Table className="min-w-240 table-fixed text-xs [&_td]:whitespace-normal [&_th]:whitespace-normal">
           <TableHeader className="bg-muted/40 text-muted-foreground">
             <TableRow className="hover:bg-transparent">
               <TableHead className="w-[7%] px-4">Run ID</TableHead>

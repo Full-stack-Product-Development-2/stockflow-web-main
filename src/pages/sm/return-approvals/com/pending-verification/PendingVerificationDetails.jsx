@@ -66,7 +66,7 @@ function PendingVerificationDetails({ approval }) {
         <p className="mb-1 text-xs font-semibold tracking-wide text-muted-foreground">
           RETURN VERIFICATION
         </p>
-        <Table className="table-fixed text-xs [&_td]:whitespace-normal [&_th]:whitespace-normal">
+        <Table className="min-w-160 table-fixed text-xs [&_td]:whitespace-normal [&_th]:whitespace-normal">
           <TableHeader>
             <TableRow className="hover:bg-transparent">
               <TableHead className="w-[23%] px-0">Product</TableHead>

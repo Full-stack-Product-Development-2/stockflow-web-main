@@ -4,7 +4,7 @@ import { SidebarHeader, SidebarNav, SidebarProfile } from "./com";
 
 function Sidebar({ nav, header }) {
   return (
-    <div className="sticky top-0 h-screen z-40 w-60 border-r border-border bg-background flex flex-col">
+    <div className="fixed inset-x-0 bottom-0 z-40 flex w-full border-t border-border bg-background md:sticky md:inset-x-auto md:top-0 md:bottom-auto md:h-screen md:w-60 md:flex-col md:border-t-0 md:border-r">
       <SidebarHeader header={header} />
       <SidebarNav items={nav} />
       <SidebarProfile />
