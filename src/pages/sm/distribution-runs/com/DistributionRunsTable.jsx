@@ -11,7 +11,7 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
-import { distributionRuns } from "@/data/mock/distribution-runs";
+import { useWorkflow } from "@/data/workflow";
 
 import DistributionRunDetails from "./DistributionRunDetails";
 import DistributionRunFilters from "./DistributionRunFilters";
@@ -37,6 +37,7 @@ function matchesStatus(runStatus, selectedStatus) {
 }
 
 function DistributionRunsTable() {
+  const distributionRuns = useWorkflow("smRuns");
   const [filters, setFilters] = useState(initialFilters);
   const [expandedRunId, setExpandedRunId] = useState(null);
 
@@ -58,7 +59,7 @@ function DistributionRunsTable() {
         (filters.fdo === "all" || run.fdo === filters.fdo)
       );
     });
-  }, [filters]);
+  }, [distributionRuns, filters]);
 
   function changeFilter(name, value) {
     setFilters((currentFilters) => ({ ...currentFilters, [name]: value }));

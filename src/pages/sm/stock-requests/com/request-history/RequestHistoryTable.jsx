@@ -11,7 +11,7 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
-import { stockRequestHistory } from "@/data/mock/stock-requests";
+import { useWorkflow } from "@/data/workflow";
 
 import RequestStatusBadge from "../shared/RequestStatusBadge";
 import HistoryRequestDetails from "./HistoryRequestDetails";
@@ -25,13 +25,14 @@ const initialFilters = {
 };
 
 function RequestHistoryTable() {
+  const history = useWorkflow("smRequestHistory");
   const [expandedRequestId, setExpandedRequestId] = useState(null);
   const [filters, setFilters] = useState(initialFilters);
 
   const requests = useMemo(() => {
     const normalizedQuery = filters.query.trim().toLowerCase();
 
-    return stockRequestHistory.filter((request) => {
+    return history.filter((request) => {
       const matchesQuery =
         !normalizedQuery ||
         request.id.toLowerCase().includes(normalizedQuery) ||
@@ -46,7 +47,7 @@ function RequestHistoryTable() {
         (filters.fdo === "all" || request.fdo === filters.fdo)
       );
     });
-  }, [filters]);
+  }, [filters, history]);
 
   function changeFilter(name, value) {
     setFilters((currentFilters) => ({ ...currentFilters, [name]: value }));

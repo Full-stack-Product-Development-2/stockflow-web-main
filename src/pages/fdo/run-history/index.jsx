@@ -1,9 +1,11 @@
-import { fdoRunHistory } from "@/data/mock/fdo-run-history";
+import { useWorkflow } from "@/data/workflow";
 import FDOLayout from "@/layouts/FDOLayout";
 
 import RunHistoryTable from "./com/RunHistoryTable";
 
 function FDORunHistory() {
+  const runs = useWorkflow("fdoRunHistory");
+
   return (
     <FDOLayout>
       <div className="mx-auto w-full max-w-6xl space-y-6">
@@ -14,7 +16,7 @@ function FDORunHistory() {
           </p>
         </header>
 
-        <RunHistoryTable runs={fdoRunHistory} />
+        <RunHistoryTable runs={runs} />
       </div>
     </FDOLayout>
   );

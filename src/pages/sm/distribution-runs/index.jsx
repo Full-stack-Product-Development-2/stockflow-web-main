@@ -2,11 +2,12 @@ import React from "react";
 
 import SMLayout from "@/layouts/SMLayout";
 
-import { distributionRuns } from "@/data/mock/distribution-runs";
+import { useWorkflow } from "@/data/workflow";
 
 import DistributionRunsTable from "./com/DistributionRunsTable";
 
 function DistributionRuns() {
+  const distributionRuns = useWorkflow("smRuns");
   const closedRunCount = distributionRuns.filter(
     (run) => run.status === "closed",
   ).length;

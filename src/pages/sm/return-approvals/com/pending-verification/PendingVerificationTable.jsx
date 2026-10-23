@@ -11,11 +11,12 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
-import { pendingReturnApprovals } from "@/data/mock/return-approvals";
+import { useWorkflow } from "@/data/workflow";
 
 import PendingVerificationDetails from "./PendingVerificationDetails";
 
 function PendingVerificationTable() {
+  const pendingReturnApprovals = useWorkflow("smPendingReturns");
   const [expandedRunId, setExpandedRunId] = useState(null);
 
   function toggleRun(runId) {

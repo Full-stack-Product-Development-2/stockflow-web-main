@@ -9,6 +9,7 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
+import { useWorkflow } from "@/data/workflow";
 
 import AcceptAllocationDialog from "../dialogs/AcceptAllocationDialog";
 import ConfirmCollectionDialog from "../dialogs/ConfirmCollectionDialog";
@@ -28,6 +29,8 @@ function StockRequestDetails({ request, onConfirmCollection, onAcceptAllocation 
   const isRejected = request.status === "rejected";
   const isAllocationReady = request.status === "allocation-ready";
   const isAwaitingCollection = request.runStatus === "awaiting-collection";
+  const activeRun = useWorkflow("fdoActiveRun").run;
+  const blockingRunId = activeRun?.status === "in-progress" ? activeRun.id : null;
   const hasAllocation = request.products.some((product) => product.allocated !== undefined);
   const allocationChanged = hasAllocation && request.products.some(
     (product) => product.allocated !== product.requested,
@@ -174,10 +177,16 @@ function StockRequestDetails({ request, onConfirmCollection, onAcceptAllocation 
             Your stock request has been approved. Visit{" "}
             <strong>{request.warehouse}</strong> to collect the stock and confirm pickup.
           </p>
-          <ConfirmCollectionDialog
-            request={request}
-            onConfirmCollection={onConfirmCollection}
-          />
+          {blockingRunId ? (
+            <p className="text-xs font-medium text-emerald-900">
+              Finish run {blockingRunId} before collecting this stock.
+            </p>
+          ) : (
+            <ConfirmCollectionDialog
+              request={request}
+              onConfirmCollection={onConfirmCollection}
+            />
+          )}
         </div>
       ) : null}
     </div>

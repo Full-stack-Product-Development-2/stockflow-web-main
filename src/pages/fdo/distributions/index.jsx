@@ -3,11 +3,15 @@ import { Plus } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
 import {
-  fdoDistributionDeliveries,
   fdoDistributionOutlets,
-  fdoDistributionRun,
   fdoNextDeliveryNumber,
 } from "@/data/mock/fdo-distributions";
+import {
+  formatDateTime,
+  recordDelivery as saveDelivery,
+  submitReturn as saveReturn,
+  useWorkflow,
+} from "@/data/workflow";
 import FDOLayout from "@/layouts/FDOLayout";
 
 import DeliveryHistoryTable from "./com/delivery-history/DeliveryHistoryTable";
@@ -19,17 +23,6 @@ import ReturnSubmittedNotice from "./com/run-summary/ReturnSubmittedNotice";
 import RemainingStockTable from "./com/stock/RemainingStockTable";
 
 function FDODistributions() {
-  function formatDateTime(date) {
-    return new Intl.DateTimeFormat("en-GB", {
-      day: "numeric",
-      month: "short",
-      year: "numeric",
-      hour: "2-digit",
-      minute: "2-digit",
-      hour12: false,
-    }).format(date);
-  }
-
   function getStockRows(products, recordedDeliveries) {
     return products.map((product) => {
       const delivered = recordedDeliveries.reduce(
@@ -43,15 +36,13 @@ function FDODistributions() {
     });
   }
 
-  const [deliveries, setDeliveries] = useState(fdoDistributionDeliveries);
-  const [status, setStatus] = useState(fdoDistributionRun.status);
-  const [returnSubmission, setReturnSubmission] = useState(null);
+  const { run, deliveries, returnSubmission } = useWorkflow("fdoActiveRun");
+  const { status } = run;
   const [dialog, setDialog] = useState(null);
   const stockRows = useMemo(
-    () => getStockRows(fdoDistributionRun.products, deliveries),
-    [deliveries],
+    () => getStockRows(run.products, deliveries),
+    [run.products, deliveries],
   );
-  const run = { ...fdoDistributionRun, status };
 
   function recordDelivery({ outletId, products, note }) {
     if (status !== "in-progress" || !products.length) return false;
@@ -81,15 +72,14 @@ function FDODistributions() {
       totalUnits: products.reduce((total, product) => total + product.quantity, 0),
     };
 
-    setDeliveries((current) => [delivery, ...current]);
+    saveDelivery(delivery);
     return true;
   }
 
   function submitReturn({ note, products }) {
     if (status !== "in-progress" || deliveries.length === 0) return;
 
-    setReturnSubmission({ submittedAt: formatDateTime(new Date()), note, products });
-    setStatus("return-submitted");
+    saveReturn({ note, products }, stockRows);
     setDialog(null);
   }
 
@@ -125,7 +115,7 @@ function FDODistributions() {
           </section>
         ) : null}
 
-        {returnSubmission ? (
+        {status === "return-submitted" && returnSubmission ? (
           <ReturnSubmittedNotice submittedAt={returnSubmission.submittedAt} />
         ) : null}
 

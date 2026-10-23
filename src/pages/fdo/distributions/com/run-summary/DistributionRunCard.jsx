@@ -5,16 +5,19 @@ import { Button } from "@/components/ui/button";
 
 function RunStatusBadge({ status }) {
   const submitted = status === "return-submitted";
+  const closed = status === "closed";
 
   return (
     <span
       className={`rounded-md border px-2 py-1 text-xs font-medium ${
-        submitted
-          ? "border-violet-200 bg-violet-50 text-violet-700"
-          : "border-amber-300 bg-amber-50 text-amber-700"
+        closed
+          ? "border-emerald-200 bg-emerald-50 text-emerald-700"
+          : submitted
+            ? "border-violet-200 bg-violet-50 text-violet-700"
+            : "border-amber-300 bg-amber-50 text-amber-700"
       }`}
     >
-      {submitted ? "Return Submitted" : "In Progress"}
+      {closed ? "Closed" : submitted ? "Return Submitted" : "In Progress"}
     </span>
   );
 }

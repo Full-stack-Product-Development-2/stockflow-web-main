@@ -3,12 +3,13 @@ import { useState } from "react";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card, CardHeader } from "@/components/ui/card";
-import { pendingReturnApprovals } from "@/data/mock/return-approvals";
+import { useWorkflow } from "@/data/workflow";
 
 import AcceptedReturnsTable from "./accepted-returns/AcceptedReturnsTable";
 import PendingVerificationTable from "./pending-verification/PendingVerificationTable";
 
 function ReturnApprovalsTable() {
+  const pendingReturnApprovals = useWorkflow("smPendingReturns");
   const [view, setView] = useState("pending");
   const isPending = view === "pending";
 

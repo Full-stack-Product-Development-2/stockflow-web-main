@@ -14,6 +14,7 @@ import {
 } from "@/components/ui/dialog";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
+import { rejectRequest } from "@/data/workflow";
 
 function RejectRequestDialog({ request }) {
   const [open, setOpen] = useState(false);
@@ -35,6 +36,7 @@ function RejectRequestDialog({ request }) {
       return;
     }
 
+    rejectRequest(request.id, reason.trim());
     setOpen(false);
     setReason("");
   }

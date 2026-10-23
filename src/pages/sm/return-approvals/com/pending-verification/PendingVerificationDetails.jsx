@@ -13,6 +13,7 @@ import {
   TableRow,
 } from "@/components/ui/table";
 import { Textarea } from "@/components/ui/textarea";
+import { acceptReturn } from "@/data/workflow";
 
 import ReturnDetailField from "../shared/ReturnDetailField";
 import RevisionRequestForm from "./RevisionRequestForm";
@@ -195,6 +196,7 @@ function PendingVerificationDetails({ approval }) {
             type="button"
             size="sm"
             disabled={totals.variance > 0 && !verificationNote.trim()}
+            onClick={() => acceptReturn(approval.id, verifiedReturns, verificationNote.trim())}
             className="bg-[#f25522] text-white hover:bg-[#dd4617]"
           >
             <CircleCheck />

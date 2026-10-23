@@ -11,11 +11,12 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
-import { acceptedReturns } from "@/data/mock/return-approvals";
+import { useWorkflow } from "@/data/workflow";
 
 import AcceptedReturnDetails from "./AcceptedReturnDetails";
 
 function AcceptedReturnsTable() {
+  const acceptedReturns = useWorkflow("smAcceptedReturns");
   const [expandedRunId, setExpandedRunId] = useState(null);
 
   function toggleRun(runId) {
