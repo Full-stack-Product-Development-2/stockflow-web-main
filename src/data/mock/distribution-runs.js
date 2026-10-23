@@ -1,0 +1,125 @@
+export const distributionRuns = [
+  {
+    id: "RUN-1013",
+    requestId: "REQ-1055",
+    fdo: "Nimal Silva",
+    warehouse: "Colombo Central Warehouse",
+    route: "Colombo South",
+    issuedDate: "1 Oct 2026",
+    issued: 240,
+    delivered: 0,
+    expectedReturn: 240,
+    status: "awaiting-collection",
+    assignedOutlets: "None yet",
+    products: [
+      { name: "Premium Rice 5kg", issued: 80, delivered: 0, expectedReturn: 80, actualReturn: null },
+      { name: "Black Tea 200g", issued: 60, delivered: 0, expectedReturn: 60, actualReturn: null },
+      { name: "Bottled Water 1.5L", issued: 100, delivered: 0, expectedReturn: 100, actualReturn: null },
+    ],
+    deliveries: [],
+  },
+  {
+    id: "RUN-1010",
+    requestId: "REQ-1058",
+    fdo: "Kasun Perera",
+    warehouse: "Colombo Central Warehouse",
+    route: "Colombo North",
+    issuedDate: "6 Aug 2026",
+    issued: 90,
+    delivered: 0,
+    expectedReturn: 90,
+    status: "stock-received",
+    assignedOutlets: "Pettah City Mart",
+    products: [
+      { name: "Bottled Water 1.5L", issued: 90, delivered: 0, expectedReturn: 90, actualReturn: null },
+    ],
+    deliveries: [],
+  },
+  {
+    id: "RUN-1004",
+    requestId: "REQ-1048-B",
+    fdo: "Nimal Silva",
+    warehouse: "Colombo Central Warehouse",
+    route: "Colombo North",
+    issuedDate: "4 Aug 2026",
+    issued: 130,
+    delivered: 82,
+    expectedReturn: 48,
+    status: "in-progress",
+    assignedOutlets: "Kotahena General Store",
+    products: [
+      { name: "Milk Powder 400g", issued: 130, delivered: 82, expectedReturn: 48, actualReturn: null },
+    ],
+    deliveries: [
+      { outlet: "Kotahena General Store", date: "4 Aug 2026", products: "Milk Powder 400g ×82", totalUnits: 82 },
+    ],
+  },
+  {
+    id: "RUN-1009",
+    requestId: "REQ-1057-B",
+    fdo: "Ravindu Jayasinghe",
+    warehouse: "Galle Regional Warehouse",
+    route: "Galle City",
+    issuedDate: "4 Aug 2026",
+    issued: 120,
+    delivered: 102,
+    expectedReturn: 18,
+    status: "return-submitted",
+    assignedOutlets: "Galle Fort Provisions",
+    products: [
+      { name: "Premium Rice 5kg", issued: 50, delivered: 42, expectedReturn: 8, actualReturn: 8 },
+      { name: "Bottled Water 1.5L", issued: 70, delivered: 60, expectedReturn: 10, actualReturn: 10 },
+    ],
+    deliveries: [
+      { outlet: "Galle Fort Provisions", date: "5 Aug 2026", products: "Premium Rice 5kg ×42, Bottled Water 1.5L ×60", totalUnits: 102 },
+    ],
+  },
+  {
+    id: "RUN-1011",
+    requestId: "REQ-1059",
+    fdo: "Kasun Perera",
+    warehouse: "Colombo Central Warehouse",
+    route: "Colombo North",
+    issuedDate: "4 Aug 2026",
+    issued: 190,
+    delivered: 152,
+    expectedReturn: 38,
+    status: "closed",
+    assignedOutlets: "Pettah City Mart, Kotahena General Store",
+    closedDate: "5 Aug 2026",
+    acceptedBy: "Amila Perera",
+    products: [
+      { name: "Premium Rice 5kg", issued: 80, delivered: 62, expectedReturn: 18, actualReturn: 18 },
+      { name: "Cooking Oil 1L", issued: 60, delivered: 48, expectedReturn: 12, actualReturn: 12 },
+      { name: "Laundry Soap Bar", issued: 50, delivered: 42, expectedReturn: 8, actualReturn: 8 },
+    ],
+    deliveries: [
+      { outlet: "Pettah City Mart", date: "4 Aug 2026", products: "Premium Rice 5kg ×35, Cooking Oil 1L ×25", totalUnits: 60 },
+      { outlet: "Kotahena General Store", date: "4 Aug 2026", products: "Premium Rice 5kg ×27, Cooking Oil 1L ×23, Laundry Soap Bar ×42", totalUnits: 92 },
+    ],
+  },
+];
+
+export const distributionRunStatusOptions = [
+  { label: "All Statuses", value: "all" },
+  { label: "Approved", value: "approved" },
+  { label: "Stock Received", value: "stock-received" },
+  { label: "In Progress", value: "in-progress" },
+  { label: "Return Submitted", value: "return-submitted" },
+  { label: "Closed", value: "closed" },
+];
+
+export const distributionRunWarehouseOptions = [
+  { label: "All Warehouses", value: "all" },
+  { label: "Colombo Central Warehouse", value: "Colombo Central Warehouse" },
+  { label: "Kandy Regional Warehouse", value: "Kandy Regional Warehouse" },
+  { label: "Galle Regional Warehouse", value: "Galle Regional Warehouse" },
+];
+
+export const distributionRunFdoOptions = [
+  { label: "All FDOs", value: "all" },
+  { label: "Kasun Perera", value: "Kasun Perera" },
+  { label: "Nimal Silva", value: "Nimal Silva" },
+  { label: "Tharushi Fernando", value: "Tharushi Fernando" },
+  { label: "Ravindu Jayasinghe", value: "Ravindu Jayasinghe" },
+];
